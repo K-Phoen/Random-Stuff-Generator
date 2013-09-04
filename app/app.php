@@ -34,6 +34,7 @@ $app['frontend.controller'] = $app->share(function() {
  ************/
 
 $app->get('/', 'frontend.controller:indexAction');
-$app->mount('/api', new \RandomStuff\Controller\ApiController());
+$app->mount('/api', new \RandomStuff\Controller\ApiController('users', 'user.generator'));
+$app->mount('/api', new \RandomStuff\Controller\ApiController('locations', 'location.generator'));
 
 return $app;

@@ -10,6 +10,14 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ApiController implements ControllerProviderInterface
 {
+    protected $baseUrl, $generatorService;
+
+    public function __construct($baseUrl, $generatorService)
+    {
+        $this->baseUrl = $baseUrl;
+        $this->generatorService = $generatorService;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -17,11 +25,8 @@ class ApiController implements ControllerProviderInterface
     {
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/users', array($this, 'getUsersAction'));
-        $controllers->get('/users/single', array($this, 'getUserAction'));
-
-        $controllers->get('/locations', array($this, 'getLocationsAction'));
-        $controllers->get('/locations/single', array($this, 'getLocationAction'));
+        $controllers->get(sprintf('/%s', $this->baseUrl), array($this, 'getCollectionAction'));
+        $controllers->get(sprintf('/%s/single', $this->baseUrl), array($this, 'getSingleAction'));
 
         // will automagically generate a response from the data returned by
         // the controllers
@@ -38,43 +43,23 @@ class ApiController implements ControllerProviderInterface
         return $controllers;
     }
 
-    public function getUserAction(Application $app, Request $request)
+    public function getSingleAction(Application $app, Request $request)
     {
         $seed = (int) $request->query->get('seed');
-        $user = $app['user.generator']->getOne($seed);
+        $item = $app[$this->generatorService]->getOne($seed);
 
         return array(
-            'results' => $user
+            'results' => $item
         );
     }
 
-    public function getUsersAction(Application $app, Request $request)
+    public function getCollectionAction(Application $app, Request $request)
     {
         $size = (int) $request->query->get('size', 10);
-        $users = $app['user.generator']->getCollection($size);
+        $items = $app[$this->generatorService]->getCollection($size);
 
         return array(
-            'results' => $users
-        );
-    }
-
-    public function getLocationAction(Application $app, Request $request)
-    {
-        $seed = (int) $request->query->get('seed');
-        $location = $app['location.generator']->getOne($seed);
-
-        return array(
-            'results' => $location
-        );
-    }
-
-    public function getLocationsAction(Application $app, Request $request)
-    {
-        $size = (int) $request->query->get('size', 10);
-        $locations = $app['location.generator']->getCollection($size);
-
-        return array(
-            'results' => $locations
+            'results' => $items
         );
     }
 }
