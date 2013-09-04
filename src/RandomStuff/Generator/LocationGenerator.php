@@ -4,11 +4,11 @@ namespace RandomStuff\Generator;
 
 class LocationGenerator extends AbstractGenerator
 {
-    public function getOne($seed = null)
+    public function getOne($seed = null, array $overridenValues = array())
     {
         $seed = $this->generateSeed($seed);
 
-        return array(
+        $location = array(
             'name'          => $this->faker->company,
             'description'   => $this->faker->paragraph,
             'address'       => array(
@@ -24,5 +24,7 @@ class LocationGenerator extends AbstractGenerator
             ),
             'seed'          => $seed,
         );
+
+        return $this->overrideValues($location, $overridenValues);
     }
 }

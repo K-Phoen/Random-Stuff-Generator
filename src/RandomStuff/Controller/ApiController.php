@@ -46,7 +46,7 @@ class ApiController implements ControllerProviderInterface
     public function getSingleAction(Application $app, Request $request)
     {
         $seed = (int) $request->query->get('seed');
-        $item = $app[$this->generatorService]->getOne($seed);
+        $item = $app[$this->generatorService]->getOne($seed, $request->query->all());
 
         return array(
             'results' => $item
@@ -56,7 +56,7 @@ class ApiController implements ControllerProviderInterface
     public function getCollectionAction(Application $app, Request $request)
     {
         $size = (int) $request->query->get('size', 10);
-        $items = $app[$this->generatorService]->getCollection($size);
+        $items = $app[$this->generatorService]->getCollection($size, $request->query->all());
 
         return array(
             'results' => $items

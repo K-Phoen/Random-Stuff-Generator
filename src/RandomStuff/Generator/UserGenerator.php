@@ -4,11 +4,11 @@ namespace RandomStuff\Generator;
 
 class UserGenerator extends AbstractGenerator
 {
-    public function getOne($seed = null)
+    public function getOne($seed = null, array $overridenValues = array())
     {
         $seed = $this->generateSeed($seed);
 
-        return array(
+        $user = array(
             //'gender'    => '',
             'name'      => array(
                 //'title' => '',
@@ -29,5 +29,7 @@ class UserGenerator extends AbstractGenerator
             'phone'     => $this->faker->phoneNumber,
             'seed'      => $seed,
         );
+
+        return $this->overrideValues($user, $overridenValues);
     }
 }
