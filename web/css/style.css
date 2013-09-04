@@ -511,7 +511,7 @@ pre span {
   margin: 80px 0 0 0;
   color: #333;
 }
-.body p {
+.body p, .body ul {
   color: #666;
   line-height: 1.5;
   font-size: 14px;

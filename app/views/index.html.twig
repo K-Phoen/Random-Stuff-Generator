@@ -11,17 +11,17 @@
         </div>
 
         <div class="info">
-            <h3>Hi, my name is <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><img id="refresh" class="refresh" src="img/refresh.png" width="18px"></h3>
+            <h3>Hi, my name is <span class="user_first_name">John</span> <span class="user_last_name">Smith</span><img id="refresh" class="refresh" src="img/refresh.png" width="18px"></h3>
             <p>I am a randomly generated user. Want to use me as a placeholder in your web application? Copy the the URL below.
-            <pre id="gen_url">{{ app.url_generator.generate('users_single', {}, true) }}</pre>
+            <pre id="user_url">{{ app.url_generator.generate('users_single', {}, true) }}</pre>
             <a id="toggle" href="javascript: void(0);">View my full profile</a></p>
 
             <div id="hidden">
                 <p>
-                    Name: <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><br />
-                    Email: <span class="gen_email_address">johnsmith27@gmail.com</span><br />
-                    Birthdate: <span class="gen_birthdate">1991-06-21</span><br />
-                    Address: <span class="gen_street">Avenue des Champs-Élysées</span>, <span class="gen_zip">75008</span> <span class="gen_city">Paris</span><br />
+                    Name: <span class="user_first_name">John</span> <span class="user_last_name">Smith</span><br />
+                    Email: <span class="user_email">johnsmith27@gmail.com</span><br />
+                    Birthdate: <span class="user_birthdate">1991-06-21</span><br />
+                    Address: <span class="user_street">Avenue des Champs-Élysées</span>, <span class="user_zip">75008</span> <span class="user_city">Paris</span><br />
                 </p>
             </div>
         </div>
@@ -34,6 +34,15 @@
         RandomStuff is an API that provides you with randomly generated
         entities. These entities can be used as placeholders in web mockups,
         and will save you time from creating your own placeholder information.
+    </p>
+
+    <h2>What can it generate?</h2>
+    <p>
+        Currently, RandomStuff is able to generate random data for the following entities:
+        <ul>
+            <li>Users ;</li>
+            <li>Locations.</li>
+        </ul>
     </p>
 
     <h2>How to use</h2>
@@ -57,28 +66,68 @@ $.ajax({
         The application will provide you with a JSON object that you can
         parse and use in your application.
     </p>
+
+    <h3>User</h3>
     <pre>
 {
     results: {
         name: {
-            first: "<span class='gen_first_name'>sofia</span>",
-            last: "<span class='gen_last_name'>morgan</span>"
+            first: "<span class='user_first_name'>sofia</span>",
+            last: "<span class='user_last_name'>morgan</span>"
         },
         location: {
-            street: "<span class='gen_street'>7159 edwards rd</span>",
-            city: "<span class='gen_city'>seymour</span>",
-            state: "<span class='gen_state'>pennsylvania</span>",
-            zip: "<span class='gen_zip'>37284</span>"
+            street: "<span class='user_street'>7159 edwards rd</span>",
+            city: "<span class='user_city'>seymour</span>",
+            state: "<span class='user_state'>pennsylvania</span>",
+            zip: "<span class='user_zip'>37284</span>"
         },
-        birthday: "<span class='gen_email_address'>1994-01-05</span>",
-        email: "<span class='gen_email_address'>sofia.morgan91@example.com</span>",
+        birthday: "<span class='user_email'>1994-01-05</span>",
+        email: "<span class='user_email'>sofia.morgan91@example.com</span>",
         md5_hash: "<span class='gen_md5'>15d628391f0eb58d7724041ab9a12ae2</span>",
         sha1_hash: "<span class='gen_sha'>58be9e2c7f22cd75d7af3c9e175b6465b280d61d</span>",
         phone: "<span class='gen_phone'>(471)-543-4073</span>",
-        seed: <span class='gen_seed'>985077871</span>
+        seed: <span class='user_seed'>985077871</span>
     }
 }
     </pre>
+
+    <h3>Location</h3>
+    <pre>
+{
+    results: {
+        name: "<span class='location_name'>Costa S.A.R.L.</span>",
+        description: "<span class="location_description">Eum ut nemo ipsam veritatis explicabo. Ducimus quam eos voluptatem exercitationem corrupti. Incidunt dolores veniam qui architecto at.</span>",
+        address: {
+            street: "<span class='location_street'>7159 edwards rd</span>",
+            city: "<span class='location_city'>seymour</span>",
+            state: "<span class='location_state'>pennsylvania</span>",
+            country: "<span class='gen_country'>USA</span>",
+            zip: "<span class='location_zip'>37284</span>"
+        },
+        coordinates: {
+            latitude: "<span class='gen_latitude'>17.062857</span>",
+            longitude: "<span class='gen_longitude'>89.005936</span>"
+        },
+        seed: <span class='location_seed'>1653467668</span>
+    }
+}
+    </pre>
+
+    <h2>Endpoints</h2>
+
+    <h3>Users</h3>
+
+    <ul>
+        <li><b>Single user</b>: {{ app.url_generator.generate('users_single', {}, true) }}</li>
+        <li><b>Multiple users</b>: {{ app.url_generator.generate('users_collection', {}, true) }}</li>
+    </ul>
+
+    <h3>Locations</h3>
+
+    <ul>
+        <li><b>Single location</b>: {{ app.url_generator.generate('locations_single', {}, true) }}</li>
+        <li><b>Multiple locations</b>: {{ app.url_generator.generate('locations_collection', {}, true) }}</li>
+    </ul>
 
     <h2>Multiple Results</h2>
     <p>
@@ -99,8 +148,8 @@ $.ajax({
     <p>
         In order to speed up your application, RandomStuff also allows you to
         always request the same information each time from the service. This is
-        for both consistancy, and it allows your browser to cache profile
-        photos to speed up your loading time. RandomStuff accepts a "seed"
+        for both consistency, and it allows your browser to cache profile
+        photos to speed up your loading time. RandomStuff accepts a "<b>seed</b>"
         parameter that will always return the same results.
     </p>
     <pre>{{ app.url_generator.generate('users_single', {}, true) }}<span>?seed=42</span></pre>
@@ -149,17 +198,18 @@ $.ajax({
             dataType: 'json',
             success: function(r) {
                 //$('#avatar').attr('src', r.results.picture);
-                $('.gen_first_name').html(r.results.name.first);
-                $('.gen_last_name').html(r.results.name.last);
+                $('.user_first_name').html(r.results.name.first);
+                $('.user_last_name').html(r.results.name.last);
                 //$('.gen_gender').html(r.results.gender);
-                $('.gen_email_address').html(r.results.email);
-                $('.gen_seed').html(r.results.seed);
-                $('.gen_birthdate').html(r.results.birthday);
-                $('.gen_street').html(r.results['location'].street);
-                $('.gen_city').html(r.results['location'].city);
-                $('.gen_zip').html(r.results['location'].zip);
+                $('.user_email').html(r.results.email);
+                $('.user_seed').html(r.results.seed);
+                $('.user_birthdate').html(r.results.birthday);
+                $('.user_street').html(r.results['location'].street);
+                $('.user_state').html(r.results['location'].state);
+                $('.user_city').html(r.results['location'].city);
+                $('.user_zip').html(r.results['location'].zip);
                 //$('.gen_profile_url').html("<a href="+r.results.picture+">"+r.results.picture+"</a>");
-                $('#gen_url').html(url+'<span>?seed='+r.results.seed+'</span>');
+                $('#user_url').html(url+'<span>?seed='+r.results.seed+'</span>');
             }
         });
     };
