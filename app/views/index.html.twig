@@ -19,7 +19,6 @@
             <div id="hidden">
                 <p>
                     Name: <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><br />
-                    Gender: <span class="gen_gender">Male</span><br />
                     Email: <span class="gen_email_address">johnsmith27@gmail.com</span><br />
                     Birthdate: <span class="gen_birthdate">1991-06-21</span><br />
                     Address: <span class="gen_street">Avenue des Champs-Élysées</span>, <span class="gen_zip">75008</span> <span class="gen_city">Paris</span><br />
@@ -56,7 +55,7 @@ $.ajax({
     <h2>Results</h2>
     <p>
         The application will provide you with a JSON object that you can
-        parse and apply to your application.
+        parse and use in your application.
     </p>
     <pre>
 {
@@ -83,18 +82,18 @@ $.ajax({
 
     <h2>Multiple Results</h2>
     <p>
-        You can request the RandomStuff API to return up to <b>5 results</b> at
-        one time with the results parameter.
+        You can request the RandomStuff API to return collections instead of single objects.
+        The number of objects returned by the API is determined by the <b>size</b> parameter (default is 10).
     </p>
-    <pre>{{ app.url_generator.generate('users_single', {}, true) }}<span>?size=5</span></pre>
+    <pre>{{ app.url_generator.generate('users_collection', {}, true) }}<span>?size=5</span></pre>
 
-    <h2>Genders</h2>
+    <h2>Overriding values</h2>
     <p>
         RandomStuff gives you a couple ways to control the results that the
-        system outputs. You can request a specific gender using the "gender"
-        GET parameter. Removing returns a random value.
+        system outputs. You can request specific values by giving them as GET
+        parameter.
     </p>
-    <pre style="margin-bottom: 50px;">{{ app.url_generator.generate('users_single', {}, true) }}<span>?gender=<span class='gen_gender'>female</span></span></pre>
+    <pre style="margin-bottom: 50px;">{{ app.url_generator.generate('users_single', {}, true) }}<span>?birthday=1991-06-21&amp;name[first]=Lily</span></pre>
 
     <h2>Seeds</h2>
     <p>
@@ -141,19 +140,18 @@ $.ajax({
 
 
 <script type="text/javascript">
-    var url = '{{ app.url_generator.generate('users_single', {}, true) }}';
-
-    var getUser = function(s) {
+    var getUser = function() {
+        var url = '{{ app.url_generator.generate('users_single', {}, true) }}';
         // Get dat info
         var output = $.ajax({
             // Check if a seed parameter is passed.
-            url: (s != undefined ? url+'?seed='+s : url),
+            url: url,
             dataType: 'json',
             success: function(r) {
                 //$('#avatar').attr('src', r.results.picture);
                 $('.gen_first_name').html(r.results.name.first);
                 $('.gen_last_name').html(r.results.name.last);
-                $('.gen_gender').html(r.results.gender);
+                //$('.gen_gender').html(r.results.gender);
                 $('.gen_email_address').html(r.results.email);
                 $('.gen_seed').html(r.results.seed);
                 $('.gen_birthdate').html(r.results.birthday);
@@ -164,7 +162,6 @@ $.ajax({
                 $('#gen_url').html(url+'<span>?seed='+r.results.seed+'</span>');
             }
         });
-        // return output.success.r.results;
     };
 
     getUser();
