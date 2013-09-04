@@ -1,96 +1,181 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-<div class="large-12 columns">
-    <div class="row">
-        <!-- Shows -->
-        <div class="large-4 small-6 columns">
+{% block body %}
+<div class="banner">
+    <h1>Random Stuff Generator</h1>
+    <h4>Like Lorem Ipsum, but for stuff.</h4>
 
-            <h4>Upcoming Shows</h4><hr>
+    <div class="preview">
+        <div class="avatar">
+            <img id="avatar" />
+        </div>
 
-            <div class="row">
-                <div class="large-1 column">
-                    <img src="http://placehold.it/50x50&amp;text=[img]">
-                </div>
+        <div class="info">
+            <h3>Hi, my name is <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><img id="refresh" class="refresh" src="img/refresh.png" width="18px"></h3>
+            <p>I am a randomly generated user. Want to use me as a placeholder in your web application? Copy the the URL below.
+            <pre id="gen_url">http://randomuser.me/</pre>
+            <a id="toggle" href="javascript: void(0);">View my full profile</a></p>
 
-                <div class="large-9 columns">
-                    <h5><a href="#">Venue Name</a></h5>
-                    <h6 class="subheader show-for-small">Doors at 00:00pm</h6>
-                </div>
-            </div>
-
-            <hr />
-
-            <div class="hide-for-small">
-                <div class="row">
-                    <div class="large-1 column">
-                        <img src="http://placehold.it/50x50&amp;text=[img]">
-                    </div>
-
-                    <div class="large-9 columns">
-                        <h5 class="subheader"><a href="#">Venue Name</a></h5>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row">
-                    <div class="large-1 column">
-                        <img src="http://placehold.it/50x50&amp;text=[img]">
-                    </div>
-
-                    <div class="large-9 columns">
-                        <h5 class="subheader"><a href="#">Venue Name</a></h5>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row">
-                    <div class="large-1 column">
-                        <img src="http://placehold.it/50x50&amp;text=[img]">
-                    </div>
-
-                    <div class="large-9 columns">
-                        <h5 class="subheader"><a href="#">Venue Name</a></h5>
-                    </div>
-                </div>
+            <div id="hidden">
+                <p>
+                    Name: <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><br />
+                    Gender: <span class="gen_gender">Male</span><br />
+                    Email: <span class="gen_email_address">johnsmith27@gmail.com</span><br />
+                    Birthdate: <span class="gen_birthdate">1991-06-21</span><br />
+                    Address: <span class="gen_street">Avenue des Champs-Élysées</span>, <span class="gen_zip">75008</span> <span class="gen_city">Paris</span><br />
+                </p>
             </div>
         </div>
-        <!-- End Shows -->
-
-        <!-- Image -->
-        <div class="large-4 small-6 columns">
-            <img src="http://placehold.it/300x465&amp;text=Image" />
-        </div>
-        <!-- End Image -->
-
-        <!-- Feed -->
-        <div class="large-4 small-12 columns">
-            <h4>Blog</h4>
-            <hr />
-            <div class="panel">
-                <h5><a href="#">Post Title 1</a></h5>
-
-                <h6 class="subheader">
-                    Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Suspendisse ultrices ornare tempor...
-                </h6>
-
-                <h6><a href="#">Read More »</a></h6>
-            </div>
-
-            <div class="panel hide-for-small">
-                <h5><a href="#">Post Title 2 »</a></h5>
-            </div>
-
-            <div class="panel hide-for-small">
-                <h5><a href="#">Post Title 3 »</a></h5>
-            </div>
-
-            <a href="#" class="right">Go To Blog »</a>
-        </div>
-        <!-- End Feed -->
-
     </div>
 </div>
+
+<div class="body frame">
+    <h2>What is RandomStuff?</h2>
+    <p>
+        RandomStuff is an API that provides you with randomly generated
+        entities. These entities can be used as placeholders in web mockups,
+        and will save you time from creating your own placeholder information.
+    </p>
+
+    <h2>How to use</h2>
+    <p>
+        You can use AJAX or another method to ask RandomStuff for a randomly
+        generated entity. If you are using JQuery, you can paste this code in
+        your body to get started.
+    </p>
+    <pre>
+$.ajax({
+    url: <span>'http://randomuser.me/g/'</span>,
+    dataType: <span>'json'</span>,
+    success: function(<span>data</span>){
+        console.log(<span>data.results</span>);
+    }
+});
+    </pre>
+
+    <h2>Results</h2>
+    <p>
+        The application will provide you with a JSON object that you can
+        parse and apply to your application.
+    </p>
+    <pre>
+{
+    results: {
+        name: {
+            first: "<span class='gen_first_name'>sofia</span>",
+            last: "<span class='gen_last_name'>morgan</span>"
+        },
+        location: {
+            street: "<span class='gen_street'>7159 edwards rd</span>",
+            city: "<span class='gen_city'>seymour</span>",
+            state: "<span class='gen_state'>pennsylvania</span>",
+            zip: "<span class='gen_zip'>37284</span>"
+        },
+        birthday: "<span class='gen_email_address'>1994-01-05</span>",
+        email: "<span class='gen_email_address'>sofia.morgan91@example.com</span>",
+        md5_hash: "<span class='gen_md5'>15d628391f0eb58d7724041ab9a12ae2</span>",
+        sha1_hash: "<span class='gen_sha'>58be9e2c7f22cd75d7af3c9e175b6465b280d61d</span>",
+        phone: "<span class='gen_phone'>(471)-543-4073</span>",
+        seed: <span class='gen_seed'>985077871</span>
+    }
+}
+    </pre>
+
+    <h2>Multiple Results</h2>
+    <p>
+        You can request the RandomStuff API to return up to <b>5 results</b> at
+        one time with the results parameter.
+    </p>
+    <pre>http://randomuser.me/g/<span>?size=5</span></pre>
+
+    <h2>Genders</h2>
+    <p>
+        RandomStuff gives you a couple ways to control the results that the
+        system outputs. You can request a specific gender using the "gender"
+        GET parameter. Removing returns a random value.
+    </p>
+    <pre style="margin-bottom: 50px;">http://randomuser.me/g/<span>?gender=<span class='gen_gender'>female</span></span></pre>
+
+    <h2>Seeds</h2>
+    <p>
+        In order to speed up your application, RandomStuff also allows you to
+        always request the same information each time from the service. This is
+        for both consistancy, and it allows your browser to cache profile
+        photos to speed up your loading time. RandomStuff accepts a "seed"
+        parameter that will always return the same results.
+    </p>
+    <pre>http://randomuser.me/g/<span>?seed=foobar</span></pre>
+
+    <p>(note that the seed will override the gender parameter)</p>
+
+    <!--
+    <ul class="social">
+        <li><a href="https://twitter.com/randomapi">Follow @randomapi</a></li>
+
+        <li><a href="https://twitter.com/share?text=Awesome! An API that generates random users. &url=http://randomuser.me" target="_blank">Share on Twitter</a></li>
+    </ul>
+    -->
+</div>
+
+<footer>
+    <div class="frame">
+        <h1>Random User Generator</h1>
+
+        <div class="block">
+            <div class="builder">
+                <h3>Designed</h3>
+                <a href="http://twitter.com/arronhunt"><img src="img/creator_arron.png" width="80px" alt="Designed by Arron Hunt" /></a>
+            </div>
+            <div class="builder">
+                <h3>Developed</h3>
+                <a href="http://twitter.com/solewolf1993"><img src="img/creator_keith.png" width="80px" alt="Developed by Keith" /></a>
+            </div>
+        </div>
+
+        <div class="block">
+            <h3>Copyright Notice</h3>
+            <p>All randomly generated photos are copyrighted under a <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/deed.en">Creative Commons BY-NC-SA 2.0</a> license. These photos were hand picked from Greg Peverill-Conti's <a href="http://www.flickr.com/photos/gregpc/">1,000 faces project</a>.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script type="text/javascript">
+    var url = 'http://random-stuff.loc:8080/index.php/api/users/single';
+
+    var getUser = function(s) {
+        // Get dat info
+        var output = $.ajax({
+            // Check if a seed parameter is passed.
+            url: (s != undefined ? url+'?seed='+s : url),
+            dataType: 'json',
+            success: function(r) {
+                //$('#avatar').attr('src', r.results.picture);
+                $('.gen_first_name').html(r.results.name.first);
+                $('.gen_last_name').html(r.results.name.last);
+                $('.gen_gender').html(r.results.gender);
+                $('.gen_email_address').html(r.results.email);
+                $('.gen_seed').html(r.results.seed);
+                $('.gen_birthdate').html(r.results.birthday);
+                $('.gen_street').html(r.results['location'].street);
+                $('.gen_city').html(r.results['location'].city);
+                $('.gen_zip').html(r.results['location'].zip);
+                //$('.gen_profile_url').html("<a href="+r.results.picture+">"+r.results.picture+"</a>");
+                $('#gen_url').html(url+'<span>?seed='+r.results.seed+'</span>');
+            }
+        });
+        // return output.success.r.results;
+    };
+
+    getUser();
+
+    $('#refresh').click(function(){
+        $(this).removeClass('spin').addClass('spin');
+        getUser();
+    });
+
+    $('#toggle').click(function(){
+        $('#hidden').toggle(250);
+    });
+</script>
 {% endblock %}

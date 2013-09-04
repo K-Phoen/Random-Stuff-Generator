@@ -1,121 +1,17 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{% block title %}Random Stuff{% endblock %}</title>
+    <title>Random Stuff Generator</title>
+    <meta charset='utf-8' />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Like Lorem Ipsum, but for stuff. RandomStuff is an API that provides you with a randomly generated entities (users, locations, etc.). These entities can be used as placeholders in web mockups, and will save you time from creating your own placeholder information." />
 
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <script src="js/vendor/custom.modernizr.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-<nav class="top-bar">
-    <ul class="title-area">
-        <li class="name">
-            <h1><a href="#">Random Stuff</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon">
-            <a href="#"><span>menu</span></a>
-        </li>
-    </ul>
-
-    <!-- Right Nav Section -->
-    <section class="top-bar-section">
-        <ul class="right">
-            <li class="divider"></li>
-            <li class="has-dropdown">
-                <a href="#">Main Item 1</a>
-                <ul class="dropdown">
-                    <li><label>Section Name</label></li>
-                    <li class="has-dropdown">
-                        <a href="#" class="">Has Dropdown, Level 1</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Dropdown Options</a></li>
-                            <li><a href="#">Dropdown Options</a></li>
-                            <li><a href="#">Level 2</a></li>
-                            <li><a href="#">Subdropdown Option</a></li>
-                            <li><a href="#">Subdropdown Option</a></li>
-                            <li><a href="#">Subdropdown Option</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li class="divider"></li>
-                    <li><label>Section Name</label></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">See all &rarr;</a></li>
-                </ul>
-            </li>
-            <li class="divider"></li>
-            <li><a href="#">Main Item 2</a></li>
-            <li class="divider"></li>
-            <li class="has-dropdown">
-                <a href="#">Main Item 3</a>
-                <ul class="dropdown">
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li><a href="#">Dropdown Option</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">See all &rarr;</a></li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-</nav>
-<!-- End Top Bar -->
-
-<div class="row">
-    <div class="large-12 columns">
-
-        <!-- Mobile Header -->
-        <div class="row">
-            <div class="large-12 columns show-for-small">
-
-                <img src="http://placehold.it/1200x700&text=Mobile Header">
-
-            </div>
-        </div>
-        <!-- End Mobile Header -->
-
-        <!-- Content -->
-        <div class="row">
-            {% block content %}{% endblock %}
-        </div>
-        <!-- End Content -->
-
-        <!-- Footer -->
-        <footer class="row">
-            <div class="large-12 columns"><hr>
-                <div class="row">
-
-                    <div class="large-6 columns">
-                        <p>&copy; Copyright no one at all. Go to town.</p>
-                    </div>
-
-                    <div class="large-6 small-12 columns">
-                        <ul class="inline-list right">
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                            <li><a href="#">Link 4</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer -->
-    </div>
-</div>
-<script>
-document.write('<script src=' +
-('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-'.js><\/script>')
-</script>
-<script src="js/foundation.min.js"></script>
-<script>$(document).foundation();</script>
+{% block body %}{% endblock %}
 </body>
 </html>
