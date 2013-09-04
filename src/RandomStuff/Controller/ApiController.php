@@ -20,6 +20,9 @@ class ApiController implements ControllerProviderInterface
         $controllers->get('/users', array($this, 'getUsersAction'));
         $controllers->get('/users/single', array($this, 'getUserAction'));
 
+        $controllers->get('/locations', array($this, 'getLocationsAction'));
+        $controllers->get('/locations/single', array($this, 'getLocationAction'));
+
         // will automagically generate a response from the data returned by
         // the controllers
         $app->on(KernelEvents::VIEW, function(GetResponseForControllerResultEvent $event) use ($app) {
@@ -52,6 +55,26 @@ class ApiController implements ControllerProviderInterface
 
         return array(
             'results' => $users
+        );
+    }
+
+    public function getLocationAction(Application $app, Request $request)
+    {
+        $seed = (int) $request->query->get('seed');
+        $location = $app['location.generator']->getOne($seed);
+
+        return array(
+            'results' => $location
+        );
+    }
+
+    public function getLocationsAction(Application $app, Request $request)
+    {
+        $size = (int) $request->query->get('size', 10);
+        $locations = $app['location.generator']->getCollection($size);
+
+        return array(
+            'results' => $locations
         );
     }
 }

@@ -2,22 +2,11 @@
 
 namespace RandomStuff\Generator;
 
-use Faker\Generator as Faker;
-
-class UserGenerator
+class UserGenerator extends AbstractGenerator
 {
-    protected $faker;
-
-    public function __construct(Faker $faker)
-    {
-        $this->faker = $faker;
-    }
-
     public function getOne($seed = null)
     {
-        $seed = $seed === null || $seed <= 0 ? $this->generateSeed() : $seed;
-
-        $this->faker->seed($seed);
+        $seed = $this->generateSeed($seed);
 
         return array(
             //'gender'    => '',
@@ -40,19 +29,5 @@ class UserGenerator
             'phone'     => $this->faker->phoneNumber,
             'seed'      => $seed,
         );
-    }
-
-    public function getCollection($size = 10)
-    {
-        $users = array();
-        foreach (range(1, $size) as $i) {
-            $users[] = $this->getOne();
-        }
-        return $users;
-    }
-
-    protected function generateSeed()
-    {
-        return mt_rand();
     }
 }

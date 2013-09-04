@@ -14,6 +14,11 @@ $app['response.formatter'] = $app->share(function($app) {
     return new \RandomStuff\Response\ResponseFormatter($app['serializer'], $app['format.negociator']);
 });
 
+// generators
+$app['location.generator'] = $app->share(function($app) {
+    return new \RandomStuff\Generator\LocationGenerator($app['faker']);
+});
+
 $app['user.generator'] = $app->share(function($app) {
     return new \RandomStuff\Generator\UserGenerator($app['faker']);
 });
