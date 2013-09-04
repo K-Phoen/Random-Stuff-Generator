@@ -11,7 +11,6 @@ $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new KPhoen\Provider\FakerServiceProvider('\RandomStuff\Faker\Factory'));
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
-
 // Debug?
 $app['debug'] = 'dev' === getenv('APPLICATION_ENV') || $_SERVER['REMOTE_ADDR'] === '10.0.2.2';
 

@@ -32,7 +32,6 @@ $app['frontend.controller'] = $app->share(function() {
     return new \RandomStuff\Controller\FrontendController();
 });
 
-
 /*************
  * Roultes
  ************/

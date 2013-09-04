@@ -19,6 +19,7 @@ abstract class AbstractGenerator implements GeneratorInterface
         foreach (range(1, $size) as $i) {
             $items[] = $this->getOne(null, $overridenValues);
         }
+
         return $items;
     }
 
