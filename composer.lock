@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "721baa4287012add28fb7434132aed84",
+    "hash": "92160eb81cef08a29524172e8dfc96bd",
     "packages": [
         {
             "name": "fzaninotto/faker",
@@ -911,9 +911,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "willdurand/negotiation": 0
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

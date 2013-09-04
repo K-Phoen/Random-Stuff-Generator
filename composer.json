@@ -14,7 +14,7 @@
     "require": {
         "silex/silex": "1.*",
         "twig/twig": ">=1.8,<2.0",
-        "willdurand/negotiation": "@stable",
+        "willdurand/negotiation": "~1.0",
         "symfony/serializer": ">=2.3,<2.4-dev",
         "kphoen/faker-service-provider": "~1.0"
     },
