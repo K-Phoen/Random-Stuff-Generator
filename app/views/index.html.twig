@@ -41,7 +41,8 @@
         Currently, RandomStuff is able to generate random data for the following entities:
         <ul>
             <li>Users ;</li>
-            <li>Locations.</li>
+            <li>Locations ;</li>
+            <li>Events.</li>
         </ul>
     </p>
 
@@ -113,6 +114,26 @@ $.ajax({
 }
     </pre>
 
+    <h3>Event</h3>
+    <pre>
+{
+    results: {
+        title: "<span class='event_title'>Perspiciatis consequuntur nihil at.</span>",
+        description: "<span class="event_description">Eum ut nemo ipsam veritatis explicabo. Ducimus quam eos voluptatem exercitationem corrupti. Incidunt dolores veniam qui architecto at.</span>",
+        start_date: "<span class="event_start_date">2013-08-27 21:05:50</span>",
+        end_date: "<span class="event_end_date">2013-09-08 23:16:28</span>",
+        timezone: "<span class="event_timezone">Asia/Baku</span>",
+        venue: {
+            // the data here is a Location
+        },
+        owner: {
+            // the data here is a User
+        },
+        seed: <span class='event_seed'>1653467668</span>
+    }
+}
+    </pre>
+
     <h2>Endpoints</h2>
 
     <h3>Users</h3>
@@ -129,6 +150,13 @@ $.ajax({
         <li><b>Multiple locations</b>: {{ app.url_generator.generate('locations_collection', {}, true) }}</li>
     </ul>
 
+    <h3>Events</h3>
+
+    <ul>
+        <li><b>Single event</b>: {{ app.url_generator.generate('events_single', {}, true) }}</li>
+        <li><b>Multiple events</b>: {{ app.url_generator.generate('events_collection', {}, true) }}</li>
+    </ul>
+
     <h2>Multiple Results</h2>
     <p>
         You can request the RandomStuff API to return collections instead of single objects.
@@ -142,7 +170,7 @@ $.ajax({
         system outputs. You can request specific values by giving them as GET
         parameter.
     </p>
-    <pre style="margin-bottom: 50px;">{{ app.url_generator.generate('users_single', {}, true) }}<span>?birthday=1991-06-21&amp;name[first]=Lily</span></pre>
+    <pre style="margin-bottom: 50px;">{{ app.url_generator.generate('users_single', {}, true) }}<span>?birthday=1991-06-21&amp;name:first=Lily</span></pre>
 
     <h2>Seeds</h2>
     <p>

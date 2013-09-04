@@ -23,6 +23,10 @@ $app['user.generator'] = $app->share(function($app) {
     return new \RandomStuff\Generator\UserGenerator($app['faker']);
 });
 
+$app['event.generator'] = $app->share(function($app) {
+    return new \RandomStuff\Generator\EventGenerator($app['faker'], $app['user.generator'], $app['location.generator']);
+});
+
 // controllers
 $app['frontend.controller'] = $app->share(function() {
     return new \RandomStuff\Controller\FrontendController();
@@ -36,5 +40,6 @@ $app['frontend.controller'] = $app->share(function() {
 $app->get('/', 'frontend.controller:indexAction');
 $app->mount('/api', new \RandomStuff\Controller\ApiController('users', 'user.generator'));
 $app->mount('/api', new \RandomStuff\Controller\ApiController('locations', 'location.generator'));
+$app->mount('/api', new \RandomStuff\Controller\ApiController('events', 'event.generator'));
 
 return $app;

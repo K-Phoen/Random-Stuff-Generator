@@ -30,8 +30,14 @@ abstract class AbstractGenerator implements GeneratorInterface
         return $seed;
     }
 
-    protected function overrideValues(array $baseValues, array $overridenValues)
+    protected function overrideValues(array $baseValues, array $rawOverridenValues)
     {
+        // unflatten the values
+        $overridenValues = array();
+        foreach ($rawOverridenValues as $path => $value) {
+            $this->unflatten($overridenValues, $path, $value);
+        }
+
         // filter invalid values that may have been given
         $overridenValues = array_intersect_key($overridenValues, $baseValues);
 
@@ -64,5 +70,15 @@ abstract class AbstractGenerator implements GeneratorInterface
         }
 
         return $config1;
+    }
+
+    protected function unflatten(array &$arr, $path, $val, $separator = ':')
+    {
+        $loc = &$arr;
+        foreach (explode($separator, $path) as $step) {
+            $loc = &$loc[$step];
+        }
+
+        return $loc = $val;
     }
 }
