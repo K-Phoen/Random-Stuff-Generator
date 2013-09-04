@@ -581,6 +581,7 @@ footer .block h3 {
 footer .block img {
   -webkit-transition: all 0.2s ease;
   -webkit-filter: grayscale(100%);
+  border-radius: 160px;
 }
 footer .block img:hover {
   -webkit-filter: grayscale(0%);
