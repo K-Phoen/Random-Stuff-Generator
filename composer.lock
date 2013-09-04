@@ -3,45 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1e5dcbd1f83932b148461a9fdd96427d",
+    "hash": "c4ffaef6dccde9fde1ff19e947ece90b",
     "packages": [
-        {
-            "name": "emanueleminotto/faker-service-provider",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/EmanueleMinotto/FakerServiceProvider.git",
-                "reference": "7c711a22d000e87454a5b98bbb9448d3e73c83fe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/EmanueleMinotto/FakerServiceProvider/zipball/7c711a22d000e87454a5b98bbb9448d3e73c83fe",
-                "reference": "7c711a22d000e87454a5b98bbb9448d3e73c83fe",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "EmanueleMinotto": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Emanuele Minotto",
-                    "email": "minottoemanuele@gmail.com",
-                    "homepage": "http://rdir.tk"
-                }
-            ],
-            "description": "Faker Service Provider for Silex",
-            "time": "2013-08-02 18:59:07"
-        },
         {
             "name": "fzaninotto/faker",
             "version": "v1.2.0",
@@ -699,7 +662,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "emanueleminotto/faker-service-provider": 20,
         "willdurand/negotiation": 0
     },
     "platform": [
