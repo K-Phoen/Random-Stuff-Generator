@@ -10,6 +10,7 @@ It can currently generate random data for the following entities:
  * Locations
  * Events
 
+Check out the [live version](http://random-stuff.kevingomez.fr/)!
 
 Installation
 ------------
