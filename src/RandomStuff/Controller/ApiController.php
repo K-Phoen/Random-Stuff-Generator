@@ -10,11 +10,11 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ApiController implements ControllerProviderInterface
 {
-    protected $baseUrl, $generatorService;
+    protected $entityName, $generatorService;
 
-    public function __construct($baseUrl, $generatorService)
+    public function __construct($entityName, $generatorService)
     {
-        $this->baseUrl = $baseUrl;
+        $this->entityName = $entityName;
         $this->generatorService = $generatorService;
     }
 
@@ -25,8 +25,12 @@ class ApiController implements ControllerProviderInterface
     {
         $controllers = $app['controllers_factory'];
 
-        $controllers->get(sprintf('/%s', $this->baseUrl), array($this, 'getCollectionAction'));
-        $controllers->get(sprintf('/%s/single', $this->baseUrl), array($this, 'getSingleAction'));
+        $controllers
+            ->get(sprintf('/%s', $this->entityName), array($this, 'getCollectionAction'))
+            ->bind(sprintf('%s_collection', $this->entityName));
+        $controllers
+            ->get(sprintf('/%s/single', $this->entityName), array($this, 'getSingleAction'))
+            ->bind(sprintf('%s_single', $this->entityName));
 
         // will automagically generate a response from the data returned by
         // the controllers

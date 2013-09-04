@@ -13,7 +13,7 @@
         <div class="info">
             <h3>Hi, my name is <span class="gen_first_name">John</span> <span class="gen_last_name">Smith</span><img id="refresh" class="refresh" src="img/refresh.png" width="18px"></h3>
             <p>I am a randomly generated user. Want to use me as a placeholder in your web application? Copy the the URL below.
-            <pre id="gen_url">http://randomuser.me/</pre>
+            <pre id="gen_url">{{ app.url_generator.generate('users_single', {}, true) }}</pre>
             <a id="toggle" href="javascript: void(0);">View my full profile</a></p>
 
             <div id="hidden">
@@ -45,7 +45,7 @@
     </p>
     <pre>
 $.ajax({
-    url: <span>'http://randomuser.me/g/'</span>,
+    url: <span>'{{ app.url_generator.generate('users_single', {}, true) }}'</span>,
     dataType: <span>'json'</span>,
     success: function(<span>data</span>){
         console.log(<span>data.results</span>);
@@ -86,7 +86,7 @@ $.ajax({
         You can request the RandomStuff API to return up to <b>5 results</b> at
         one time with the results parameter.
     </p>
-    <pre>http://randomuser.me/g/<span>?size=5</span></pre>
+    <pre>{{ app.url_generator.generate('users_single', {}, true) }}<span>?size=5</span></pre>
 
     <h2>Genders</h2>
     <p>
@@ -94,7 +94,7 @@ $.ajax({
         system outputs. You can request a specific gender using the "gender"
         GET parameter. Removing returns a random value.
     </p>
-    <pre style="margin-bottom: 50px;">http://randomuser.me/g/<span>?gender=<span class='gen_gender'>female</span></span></pre>
+    <pre style="margin-bottom: 50px;">{{ app.url_generator.generate('users_single', {}, true) }}<span>?gender=<span class='gen_gender'>female</span></span></pre>
 
     <h2>Seeds</h2>
     <p>
@@ -104,7 +104,7 @@ $.ajax({
         photos to speed up your loading time. RandomStuff accepts a "seed"
         parameter that will always return the same results.
     </p>
-    <pre>http://randomuser.me/g/<span>?seed=foobar</span></pre>
+    <pre>{{ app.url_generator.generate('users_single', {}, true) }}<span>?seed=42</span></pre>
 
     <p>(note that the seed will override the gender parameter)</p>
 
@@ -141,7 +141,7 @@ $.ajax({
 
 
 <script type="text/javascript">
-    var url = 'http://random-stuff.loc:8080/index.php/api/users/single';
+    var url = '{{ app.url_generator.generate('users_single', {}, true) }}';
 
     var getUser = function(s) {
         // Get dat info
