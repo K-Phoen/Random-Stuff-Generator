@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "55a884fb88a77f40016fd32862d998ac",
+    "hash": "6c982c95881cfa0ea18917b06fda6ff6",
     "packages": [
         {
             "name": "fzaninotto/faker",
@@ -50,6 +50,44 @@
                 "fixtures"
             ],
             "time": "2013-06-09 18:05:57"
+        },
+        {
+            "name": "kphoen/faker-service-provider",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/K-Phoen/FakerServiceProvider.git",
+                "reference": "dafb82fd67f9fdb970a5a5a4613052a49aa5c25d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/K-Phoen/FakerServiceProvider/zipball/dafb82fd67f9fdb970a5a5a4613052a49aa5c25d",
+                "reference": "dafb82fd67f9fdb970a5a5a4613052a49aa5c25d",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "~1.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "KPhoen": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kévin Gomez",
+                    "email": "contact@kevingomez.fr",
+                    "homepage": "http://www.kevingomez.fr/"
+                }
+            ],
+            "description": "Faker Service Provider for Silex",
+            "time": "2013-09-04 12:19:19"
         },
         {
             "name": "pimple/pimple",
