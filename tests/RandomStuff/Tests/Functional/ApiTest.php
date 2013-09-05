@@ -92,4 +92,35 @@ class ApiTest extends WebTestCase
             array(-4, 10),
         );
     }
+
+    public function testOverridingSimpleValue()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/api/users/single', $parameters = array('email' => 'foo@bar.baz'), $files = array(), $server = array(
+            'HTTP_ACCEPT' => 'text/html,application/json,application/xml'
+        ));
+
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertSame('application/json', $client->getResponse()->headers->get('Content-Type'));
+
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertArrayHasKey('results', $responseData);
+        $this->assertSame($responseData['results']['email'], 'foo@bar.baz');
+    }
+
+    public function testOverridingArrayValue()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/api/users/single', $parameters = array('name:first' => 'foo'), $files = array(), $server = array(
+            'HTTP_ACCEPT' => 'text/html,application/json,application/xml'
+        ));
+
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertSame('application/json', $client->getResponse()->headers->get('Content-Type'));
+
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertArrayHasKey('results', $responseData);
+        $this->assertArrayHasKey('name', $responseData['results']);
+        $this->assertSame($responseData['results']['name']['first'], 'foo');
+    }
 }
