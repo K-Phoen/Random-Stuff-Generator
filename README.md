@@ -1,4 +1,4 @@
-RandomStuff
+RandomStuff [![Build Status](https://travis-ci.org/K-Phoen/Random-Stuff-Generator.png?branch=master)](https://travis-ci.org/K-Phoen/Random-Stuff-Generator)
 ===========
 
 Inspired by [Random User Generator](http://randomuser.me/), RandomStuff is a
