@@ -27,6 +27,16 @@ You're done! You can run the application using the PHP built-in webserver:
 Open `http://localhost:4000/` in your browser to see RandomStuff running.
 
 
+Tests
+-----
+
+First, install the application as described in section [Installation](#installation).
+
+Then run the testsuite:
+
+    ./vendor/bin/phpunit
+
+
 Credits
 -------
 
