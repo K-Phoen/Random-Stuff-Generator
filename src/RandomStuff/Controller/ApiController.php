@@ -59,7 +59,7 @@ class ApiController implements ControllerProviderInterface
 
     public function getCollectionAction(Application $app, Request $request)
     {
-        $size = (int) $request->query->get('size', 10);
+        $size = (int) $request->query->get('size');
         $items = $app[$this->generatorService]->getCollection($size, $request->query->all());
 
         return array(

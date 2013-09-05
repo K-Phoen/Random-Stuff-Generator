@@ -6,6 +6,8 @@ use Faker\Generator as Faker;
 
 abstract class AbstractGenerator implements GeneratorInterface
 {
+    const DEFAULT_COLLECTION_SIZE = 10;
+
     protected $faker;
 
     public function __construct(Faker $faker)
@@ -13,9 +15,10 @@ abstract class AbstractGenerator implements GeneratorInterface
         $this->faker = $faker;
     }
 
-    public function getCollection($size = 10, array $overridenValues = array())
+    public function getCollection($size = self::DEFAULT_COLLECTION_SIZE, array $overridenValues = array())
     {
         $items = array();
+        $size = (int) $size <= 0 ? self::DEFAULT_COLLECTION_SIZE : (int) $size;
         foreach (range(1, $size) as $i) {
             $items[] = $this->getOne(null, $overridenValues);
         }

@@ -7,7 +7,7 @@ class ApiTest extends WebTestCase
     /**
      * @dataProvider apiEndpointsProvider
      */
-    public function testEndpointsAreAccessibleAndCanReturnXml($endpoint, array $headers)
+    public function testEndpointsAreAccessible($endpoint, array $headers)
     {
         $client = $this->createClient();
         $crawler = $client->request('GET', $endpoint, $parameters = array(), $files = array(), $headers['request']);
@@ -56,6 +56,40 @@ class ApiTest extends WebTestCase
 
             array('/api/events', $json_headers),
             array('/api/events/single', $json_headers),
+        );
+    }
+
+    /**
+     * @dataProvider resultsSizeProvider
+     */
+    public function testLimitingResults($size, $expectedSize = null)
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/api/users', $parameters = array('size' => $size), $files = array(), $server = array(
+            'HTTP_ACCEPT' => 'text/html,application/json,application/xml'
+        ));
+
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertSame('application/json', $client->getResponse()->headers->get('Content-Type'));
+
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertArrayHasKey('results', $responseData);
+        $this->assertCount($expectedSize !== null ? $expectedSize : $size, $responseData['results']);
+    }
+
+    public function resultsSizeProvider()
+    {
+        return array(
+            array(1),
+            array(2),
+            array(10),
+            array(20),
+
+            array('lala', 10),
+            array('', 10),
+            array(null, 10),
+            array(0, 10),
+            array(-4, 10),
         );
     }
 }
