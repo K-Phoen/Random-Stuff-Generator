@@ -12,7 +12,7 @@ $app->register(new KPhoen\Provider\FakerServiceProvider('\RandomStuff\Faker\Fact
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 // Debug?
-$app['debug'] = 'dev' === getenv('APPLICATION_ENV') || $_SERVER['REMOTE_ADDR'] === '10.0.2.2';
+$app['debug'] = 'dev' === getenv('APPLICATION_ENV') || (!empty($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] === '10.0.2.2');
 
 if ($app['debug']) {
     $app->register(new Silex\Provider\WebProfilerServiceProvider(), array(

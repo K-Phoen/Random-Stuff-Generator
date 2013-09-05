@@ -19,7 +19,10 @@
         "kphoen/faker-service-provider": "~1.0"
     },
     "require-dev": {
-        "silex/web-profiler": "~1.0"
+        "silex/web-profiler": "~1.0",
+        "symfony/browser-kit": ">=2.3,<2.4-dev",
+        "symfony/css-selector": ">=2.3,<2.4-dev",
+        "phpunit/phpunit": ">=3.7.0"
     },
 
     "autoload": {

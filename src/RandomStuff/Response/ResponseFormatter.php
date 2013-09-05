@@ -20,10 +20,10 @@ class ResponseFormatter
     public function format(Request $request, array $data)
     {
         $acceptData = $request->headers->get('accept', 'json');
-        $format = $this->formatNegotiator->getBest($acceptData, $this->allowedFormats);
+        $format = $this->formatNegotiator->getBestFormat($acceptData, $this->allowedFormats);
 
-        return new Response($this->serializer->serialize($data, $format->getValue()), 200, array(
-            'Content-Type' => $request->getMimeType($format->getValue())
+        return new Response($this->serializer->serialize($data, $format), 200, array(
+            'Content-Type' => $request->getMimeType($format)
         ));
     }
 }
