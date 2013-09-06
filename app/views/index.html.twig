@@ -22,6 +22,7 @@
                     Email: <span class="user_email">johnsmith27@gmail.com</span><br />
                     Birthdate: <span class="user_birthdate">1991-06-21</span><br />
                     Address: <span class="user_street">Avenue des Champs-Élysées</span>, <span class="user_zip">75008</span> <span class="user_city">Paris</span><br />
+                    Profile Photo URL: <span class="gen_profile_url">URL</span>
                 </p>
             </div>
         </div>
@@ -82,6 +83,8 @@ $.ajax({
             state: "<span class='user_state'>pennsylvania</span>",
             zip: "<span class='user_zip'>37284</span>"
         },
+        picture: "<span class='user_picture'>1994-01-05</span>",
+        picture_thumb: "<span class='user_picture_thumb'>sofia.morgan91@example.com</span>",
         birthday: "<span class='user_email'>1994-01-05</span>",
         email: "<span class='user_email'>sofia.morgan91@example.com</span>",
         md5_hash: "<span class='gen_md5'>15d628391f0eb58d7724041ab9a12ae2</span>",
@@ -227,7 +230,7 @@ $.ajax({
             url: url,
             dataType: 'json',
             success: function(r) {
-                //$('#avatar').attr('src', r.results.picture);
+                $('#avatar').attr('src', r.results.picture_thumb);
                 $('.user_first_name').html(r.results.name.first);
                 $('.user_last_name').html(r.results.name.last);
                 //$('.gen_gender').html(r.results.gender);
@@ -238,7 +241,9 @@ $.ajax({
                 $('.user_state').html(r.results['location'].state);
                 $('.user_city').html(r.results['location'].city);
                 $('.user_zip').html(r.results['location'].zip);
-                //$('.gen_profile_url').html("<a href="+r.results.picture+">"+r.results.picture+"</a>");
+                $('.user_picture').html(r.results.picture);
+                $('.user_picture_thumb').html(r.results.picture_thumb);
+                $('.gen_profile_url').html("<a href="+r.results.picture+">"+r.results.picture+"</a>");
                 $('#user_url').html(url+'<span>?seed='+r.results.seed+'</span>');
             }
         });

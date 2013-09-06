@@ -16,7 +16,14 @@
         "twig/twig": ">=1.8,<2.0",
         "willdurand/negotiation": "~1.0",
         "symfony/serializer": ">=2.3,<2.4-dev",
-        "kphoen/faker-service-provider": "~1.0"
+        "kphoen/faker-service-provider": "~1.0",
+
+        "rezzza/flickr": "~1.0",
+        "guzzle/http": "3.*",
+        "symfony/finder": ">=2.3,<2.4-dev",
+        "knplabs/console-service-provider": "dev-master",
+        "knplabs/gaufrette": "0.1.*",
+        "kphoen/gaufrette-extras": "dev-master"
     },
     "require-dev": {
         "silex/web-profiler": "~1.0",

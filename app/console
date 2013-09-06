@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+$app = require_once __DIR__.'/app.php';
+
+$application = $app['console'];
+$application->add(new \RandomStuff\Command\AvatarImportCommand());
+
+$application->run();

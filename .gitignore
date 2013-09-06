@@ -2,3 +2,5 @@ app/cache
 
 composer.phar
 vendor
+
+web/avatars
