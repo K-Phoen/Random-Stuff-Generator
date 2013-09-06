@@ -18,7 +18,7 @@
         "symfony/serializer": ">=2.3,<2.4-dev",
         "kphoen/faker-service-provider": "~1.0",
 
-        "rezzza/flickr": "~1.0",
+        "rezzza/flickr": "dev-master",
         "guzzle/http": "3.*",
         "symfony/finder": ">=2.3,<2.4-dev",
         "knplabs/console-service-provider": "dev-master",
@@ -31,6 +31,13 @@
         "symfony/css-selector": ">=2.3,<2.4-dev",
         "phpunit/phpunit": ">=3.7.0"
     },
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/K-Phoen/flickr.git"
+        }
+    ],
 
     "autoload": {
         "psr-0": { "": "src" }

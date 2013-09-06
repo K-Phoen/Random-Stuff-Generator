@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "cda0e9db675e7aaf6b96631d4f27c668",
+    "hash": "69ef9b565c5d8e8ad4456635a93a183a",
     "packages": [
         {
             "name": "fzaninotto/faker",
@@ -538,16 +538,16 @@
         },
         {
             "name": "rezzza/flickr",
-            "version": "v1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rezzza/flickr.git",
-                "reference": "2f4ef61d562e60ff5e058ed91670fe8fbcbe194c"
+                "url": "https://github.com/K-Phoen/flickr.git",
+                "reference": "6ddde50b5984e6e484e07f48251acdeefe38a3b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rezzza/flickr/zipball/2f4ef61d562e60ff5e058ed91670fe8fbcbe194c",
-                "reference": "2f4ef61d562e60ff5e058ed91670fe8fbcbe194c",
+                "url": "https://api.github.com/repos/K-Phoen/flickr/zipball/6ddde50b5984e6e484e07f48251acdeefe38a3b1",
+                "reference": "6ddde50b5984e6e484e07f48251acdeefe38a3b1",
                 "shasum": ""
             },
             "require": {
@@ -570,7 +570,6 @@
                     "Rezzza\\Flickr": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -585,7 +584,10 @@
             "keywords": [
                 "flickr"
             ],
-            "time": "2013-06-18 11:18:20"
+            "support": {
+                "source": "https://github.com/K-Phoen/flickr/tree/master"
+            },
+            "time": "2013-09-06 14:30:05"
         },
         {
             "name": "silex/silex",
@@ -1999,6 +2001,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "rezzza/flickr": 20,
         "knplabs/console-service-provider": 20,
         "kphoen/gaufrette-extras": 20
     },

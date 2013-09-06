@@ -50,6 +50,10 @@ class AvatarImportCommand extends Command
             'page'          => $page,
         ));
 
+        if ((string) $res->attributes()->stat === 'fail') {
+            throw new \RuntimeException(sprintf('The API returned an error: "%s"', (string) $res->err->attributes()->msg));
+        }
+
         $output->writeln(sprintf('Fetching page %d/%d', $page, (int) $res->photoset->attributes()->pages));
 
         foreach ($res->photoset->photo as $photo) {
@@ -64,8 +68,8 @@ class AvatarImportCommand extends Command
         $app = $this->getSilexApplication();
         $filename = pathinfo($url, PATHINFO_BASENAME);
 
-        $app['avatar.filesystem']->write($filename, $this->fetchUrl($url));
-        $app['avatar.thumb.filesystem']->write($filename, $this->fetchUrl($thumb_url));
+        $app['avatar.filesystem']->write($filename, $this->fetchUrl($url), true);
+        $app['avatar.thumb.filesystem']->write($filename, $this->fetchUrl($thumb_url), true);
     }
 
     protected function fetchUrl($url)

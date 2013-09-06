@@ -14,18 +14,24 @@ $app['response.formatter'] = $app->share(function($app) {
     return new \RandomStuff\Response\ResponseFormatter($app['serializer'], $app['format.negociator']);
 });
 
+$app['application.host'] = $app->share(function($app) {
+    if (PHP_SAPI == 'cli') {
+        return '';
+    }
+
+    return $app['request']->getSchemeAndHttpHost();
+});
+
 // gaufrette related
 $app['avatar.filesystem'] = $app->share(function($app) {
-    $host = $app['request']->getSchemeAndHttpHost();
     $adapter = new \Gaufrette\Adapter\Local($app['avatar.directory'], true);
-    $resolver = new \GaufretteExtras\Resolver\PrefixResolver($host.'/avatars');
+    $resolver = new \GaufretteExtras\Resolver\PrefixResolver($app['application.host'].'/avatars');
 
     return new \GaufretteExtras\ResolvableFilesystem(new \GaufretteExtras\Adapter\ResolvableAdapter($adapter, $resolver));
 });
 $app['avatar.thumb.filesystem'] = $app->share(function($app) {
-    $host = $app['request']->getSchemeAndHttpHost();
     $adapter = new \Gaufrette\Adapter\Local($app['avatar.thumb.directory'], true);
-    $resolver = new \GaufretteExtras\Resolver\PrefixResolver($host.'/avatars/thumbs');
+    $resolver = new \GaufretteExtras\Resolver\PrefixResolver($app['application.host'].'/avatars/thumbs');
 
     return new \GaufretteExtras\ResolvableFilesystem(new \GaufretteExtras\Adapter\ResolvableAdapter($adapter, $resolver));
 });
