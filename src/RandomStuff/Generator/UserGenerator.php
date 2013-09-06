@@ -40,11 +40,11 @@ class UserGenerator extends AbstractGenerator
                 'state'     => $this->faker->state,
                 'zip'       => $this->faker->postcode,
             ),
-            'picture'       => $this->avatarsFs->resolve($avatar),
-            'picture_thumb' => $this->avatarsThumbsFs->resolve($avatar),
+            'picture'       => $avatar === null ? null : $this->avatarsFs->resolve($avatar),
+            'picture_thumb' => $avatar === null ? null : $this->avatarsThumbsFs->resolve($avatar),
             'birthday'      => $this->faker->date,
             'email'         => $this->faker->email,
-            'password'      => '',
+            'password'      => $this->faker->username,
             'md5_hash'      => $this->faker->md5,
             'sha1_hash'     => $this->faker->sha1,
             'phone'         => $this->faker->phoneNumber,
@@ -59,6 +59,10 @@ class UserGenerator extends AbstractGenerator
         $finder = new Finder();
         $files = $finder->files()->depth('0')->in($directory);
         $files = array_keys(iterator_to_array($files));
+
+        if (!$files) {
+            return null;
+        }
 
         return basename($this->faker->randomElement($files));
     }
