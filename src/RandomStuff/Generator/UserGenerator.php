@@ -44,7 +44,7 @@ class UserGenerator extends AbstractGenerator
             'picture_thumb' => $avatar === null ? null : $this->avatarsThumbsFs->resolve($avatar),
             'birthday'      => $this->faker->date,
             'email'         => $this->faker->email,
-            'password'      => $this->faker->username,
+            'password'      => $this->getRandomPassword(),
             'md5_hash'      => $this->faker->md5,
             'sha1_hash'     => $this->faker->sha1,
             'phone'         => $this->faker->phoneNumber,
@@ -65,5 +65,21 @@ class UserGenerator extends AbstractGenerator
         }
 
         return basename($this->faker->randomElement($files));
+    }
+
+    protected function getRandomPassword()
+    {
+        $length = $this->faker->randomNumber(5, 12);
+        $password = '';
+
+        while ($length--) {
+            if ($this->faker->boolean) {
+                $password .= $this->faker->randomLetter;
+            } else {
+                $password .= $this->faker->randomDigit;
+            }
+        }
+
+        return $password;
     }
 }

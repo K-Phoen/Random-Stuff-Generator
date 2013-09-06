@@ -87,6 +87,7 @@ $.ajax({
         picture_thumb: "<span class='user_picture_thumb'>sofia.morgan91@example.com</span>",
         birthday: "<span class='user_email'>1994-01-05</span>",
         email: "<span class='user_email'>sofia.morgan91@example.com</span>",
+        password: "<span class='user_password'>738y8c9</span>",
         md5_hash: "<span class='gen_md5'>15d628391f0eb58d7724041ab9a12ae2</span>",
         sha1_hash: "<span class='gen_sha'>58be9e2c7f22cd75d7af3c9e175b6465b280d61d</span>",
         phone: "<span class='gen_phone'>(471)-543-4073</span>",
@@ -243,6 +244,7 @@ $.ajax({
                 $('.user_zip').html(r.results['location'].zip);
                 $('.user_picture').html(r.results.picture);
                 $('.user_picture_thumb').html(r.results.picture_thumb);
+                $('.user_password').html(r.results.password);
                 $('.gen_profile_url').html("<a href="+r.results.picture+">"+r.results.picture+"</a>");
                 $('#user_url').html(url+'<span>?seed='+r.results.seed+'</span>');
             }
