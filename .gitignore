@@ -3,4 +3,5 @@ app/cache
 composer.phar
 vendor
 
-web/avatars
+web/avatars/*.jpg
+web/avatars/thumbs/*.jpg
